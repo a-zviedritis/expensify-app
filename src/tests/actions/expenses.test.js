@@ -4,7 +4,8 @@ import {
   addExpense, startAddExpense, 
   removeExpense, startRemoveExpense, 
   editExpense, startEditExpense,
-  setExpenses, startSetExpenses} from '../../actions/expenses';
+  setExpenses, startSetExpenses
+} from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 

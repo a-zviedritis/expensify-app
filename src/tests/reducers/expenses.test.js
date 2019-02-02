@@ -1,7 +1,7 @@
 import expenseReducer from '../../reducers/expenses';
 import expenses from '../fixtures/expenses';
 
-test('should setup default filter values', () => {
+test('should setup default expenses values', () => {
   const state = expenseReducer(undefined, { type: '@@INIT' });
 
   expect(state).toEqual([]);
