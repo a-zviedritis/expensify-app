@@ -37,6 +37,51 @@ exports[`should render ExpensesSummary correctly 1`] = `
 </div>
 `;
 
+exports[`should render ExpensesSummary correctly when filtered out expenses 1`] = `
+<div
+  className="page-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="page-header__title"
+    >
+      Viewing 
+      <span>
+        2
+      </span>
+       
+      expenses
+       totalling 
+      <span>
+        €
+        1,231.23
+      </span>
+    </h1>
+    <p
+      className="page-header__sub-title"
+    >
+      1
+       
+      expense
+       filtered out
+    </p>
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        replace={false}
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`should render ExpensesSummary correctly when no expenses 1`] = `
 <div
   className="page-header"
