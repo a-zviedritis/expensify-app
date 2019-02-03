@@ -36,6 +36,15 @@ exports[`should render EditExpensePage correctly 1`] = `
     >
       Remove Expense
     </button>
+    <RemoveExpenseModal
+      handleConfirmRemoval={[Function]}
+      handleDenyRemoval={[Function]}
+      history={
+        Object {
+          "push": [Function],
+        }
+      }
+    />
   </div>
 </div>
 `;

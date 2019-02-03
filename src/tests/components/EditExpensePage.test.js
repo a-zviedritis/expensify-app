@@ -11,7 +11,7 @@ beforeEach(() => {
   history = { push: jest.fn() };
   wrapper = shallow(
     <EditExpensePage 
-    startEditExpense={startEditExpense} 
+      startEditExpense={startEditExpense} 
       startRemoveExpense={startRemoveExpense} 
       history={history} 
       expense={expenses[0]}/>
@@ -29,8 +29,20 @@ test('should handle onSubmit', () => {
   expect(startEditExpense).toHaveBeenLastCalledWith(expenses[0].id, expenses[0]);
 });
 
-test('should handle onClick', () => {
+test('should handle markForRemoval', () => {
   wrapper.find('button').simulate('click');
+
+  expect(wrapper.state('expenseForRemoval')).toBe(expenses[0]);
+});
+
+test('should handle handleDenyRemoval', () => {
+  wrapper.instance().handleDenyRemoval();
+
+  expect(wrapper.state('expenseForRemoval')).toBeUndefined();
+});
+
+test('should handle handleConfirmRemoval', () => {
+  wrapper.instance().handleConfirmRemoval();
 
   expect(history.push).toHaveBeenLastCalledWith('/');
   expect(startRemoveExpense).toHaveBeenLastCalledWith({ id: expenses[0].id });

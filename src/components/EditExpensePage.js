@@ -2,15 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import RemoveExpenseModal from './RemoveExpenseModal';
 
 export class EditExpensePage extends React.Component {
+  state = {
+    expenseForRemoval: undefined
+  }
   onSubmit = (expense) => {
     this.props.startEditExpense(this.props.expense.id, expense);
     this.props.history.push('/');
   };
-  onClick = () => {
+  markForRemoval = () => {
+    this.setState(() => ({
+      expenseForRemoval: this.props.expense
+    }));
+  };
+  handleConfirmRemoval = () => {
     this.props.startRemoveExpense({ id: this.props.expense.id });
     this.props.history.push('/');
+  };
+  handleDenyRemoval = () => {
+    this.setState(() => ({
+      expenseForRemoval: undefined,
+    }));
   };
   render() {
     return (
@@ -27,10 +41,16 @@ export class EditExpensePage extends React.Component {
           />
           <button 
             className="button button--secondary"
-            onClick={this.onClick}
+            onClick={this.markForRemoval}
           >
             Remove Expense
           </button>
+          <RemoveExpenseModal 
+            expenseForRemoval={this.state.expenseForRemoval}
+            handleConfirmRemoval={this.handleConfirmRemoval}
+            handleDenyRemoval={this.handleDenyRemoval}
+            history={this.props.history}
+          />
         </div>
       </div>
     );
@@ -38,7 +58,7 @@ export class EditExpensePage extends React.Component {
 };
 
 const mapStateToProps = (state, props) => ({
-  expense: state.expenses.find((expense) => expense.id === props.match.params.id)
+  expense: state.expenses.find((expense) => expense.id === props.match.params.id),
 });
 
 const mapDispatchToProps = (dispatch) => ({
